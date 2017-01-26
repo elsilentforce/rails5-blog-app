@@ -18,6 +18,8 @@ gem 'coffee-rails', '~> 4.2'
 
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.6'
+# Auto prefixer
+gem 'autoprefixer-rails', '~> 6.3.7'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -37,6 +39,10 @@ group :development, :test do
   gem 'rspec-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+
+  gem 'guard', '~> 2.14.0'
+  gem 'guard-rspec', '~> 4.7.2'
+  gem 'guard-cucumber', '~> 2.1.2'
 end
 
 group :test do
