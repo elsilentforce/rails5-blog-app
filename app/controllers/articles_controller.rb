@@ -11,10 +11,11 @@ class ArticlesController < ApplicationController
     @article.save
     if @article.persisted?
       flash[:success] = "Article has been created"
+      redirect_to articles_path
     else
-      flash[:warning] = "Article cannot be created"
+      flash[:warning] = "Article has not been created"
+      render :new
     end
-    redirect_to articles_path
   end
 
   private
