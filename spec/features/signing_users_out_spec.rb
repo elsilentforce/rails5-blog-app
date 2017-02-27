@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature do
+RSpec.feature "Sign out signed in user" do
   before do
     @john = User.create!(email: 'john@example.com', password: 'password')
 
