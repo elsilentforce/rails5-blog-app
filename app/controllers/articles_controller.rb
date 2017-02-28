@@ -11,6 +11,7 @@ before_action :set_article, only: [:show,:edit,:update,:destroy]
 
   def create
     @article = Article.new(article_params)
+    @article.user = current_user
     @article.save
     if @article.persisted?
       flash[:success] = "Article has been created"
