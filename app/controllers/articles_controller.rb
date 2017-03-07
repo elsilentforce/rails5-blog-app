@@ -26,15 +26,33 @@ before_action :set_article, only: [:show,:edit,:update,:destroy]
   end
 
   def edit
+    if user_signed_in?
+      unless @article.user === current_user
+        flash_message = "Only the owner can edit the Article."
+        flash[:alert] = flash_message
+        render :show
+      end
+    else
+      flash_message = "You need to sign in before continue."
+      flash[:alert] = flash_message
+      redirect_to new_user_session_path
+    end
+
   end
 
   def update
-    if @article.update(article_params)
-      flash[:success] = "Article has been updated"
-      redirect_to @article
+    unless @article.user === current_user
+      flash_message = "Only the owner can edit the Article."
+      flash[:alert] = flash_message
+      redirect_to root_path
     else
-      flash.now[:danger] = "Article has not been updated"
-      render :edit
+      if @article.update(article_params)
+        flash[:success] = "Article has been updated"
+        redirect_to @article
+      else
+        flash.now[:danger] = "Article has not been updated"
+        render :edit
+      end
     end
   end
 
