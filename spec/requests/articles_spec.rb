@@ -17,18 +17,18 @@ RSpec.describe "Articles", type: :request do
         flash_message = "You need to sign in before continue."
         expect(flash[:alert]).to eq flash_message
       end
+    end
 
-      context 'with signed in user that is not the owner' do
-        before do
-          login_as(@fred)
-          get "articles/#{@article.id}/edit"
-        end
+    context 'with signed in user that is not the owner' do
+      before do
+        login_as(@fred)
+        get "/articles/#{@article.id}/edit"
+      end
 
-        it "redirects to home page" do
-          expect(response.status).to eq 302
-          flash_message = "Only the owner can edit the Article."
-          expect(flash[:alert]).to eq flash_message
-        end
+      it "redirects to home page" do
+        expect(response.status).to eq 200
+        flash_message = "Only the owner can edit the Article."
+        expect(flash[:alert]).to eq flash_message
       end
 
     end
