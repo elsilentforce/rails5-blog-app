@@ -57,9 +57,15 @@ before_action :set_article, only: [:show,:edit,:update,:destroy]
   end
 
   def destroy
-    if @article.destroy
-      flash[:success] = "Article has been deleted"
-      redirect_to articles_path
+    unless @article.user === current_user
+      flash_message = "You can not delete the Article."
+      flash[:alert] = flash_message
+      redirect_to @article
+    else
+      if @article.destroy
+        flash[:success] = "Article has been deleted"
+        redirect_to articles_path
+      end
     end
   end
 
