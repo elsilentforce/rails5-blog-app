@@ -55,3 +55,23 @@
     </div>
   <% end %>
 </div>
+
+<div class="col-md-12">
+  <header>
+    <h2>Comments</h2>
+  </header>
+  <% if @article.comments.any? %>
+    <% persisted_comments(@comments).each do |comment| %>
+      <div class="comment-body">
+        <%= comment.body %>
+      </div>
+      <div class="comment-time">
+        <%= time_ago_in_words(comment.created_at) %>
+        ago by <%= comment.user.email %>
+      </div>
+      <hr>
+    <% end %>
+  <% else %>
+    There is no comments to show.
+  <% end %>
+</div>
