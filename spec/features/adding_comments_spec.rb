@@ -16,7 +16,7 @@ RSpec.feature "Adding comments to Articles" do
 
     expect(page).to have_content("Comment has been created")
     expect(page).to have_content("An awesome Article.")
-    expect(current_path).to eq( articles_path(@article) )
+    expect(current_path).to eq( article_path(@article) )
   end
 
 end
