@@ -50,7 +50,7 @@ before_action :set_article, only: [:show,:edit,:update,:destroy]
     else
       if @article.update(article_params)
         flash[:success] = "Article has been updated"
-        redirect_to @article
+        redirect_to article_path(@article)
       else
         flash.now[:danger] = "Article has not been updated"
         render :edit
