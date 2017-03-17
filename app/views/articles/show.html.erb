@@ -61,16 +61,18 @@
     <h2>Comments</h2>
   </header>
   <% if @article.comments.any? %>
+  <div id="messages">
     <% persisted_comments(@comments).each do |comment| %>
-      <div class="comment-body">
-        <%= comment.body %>
-      </div>
-      <div class="comment-time">
-        <%= time_ago_in_words(comment.created_at) %>
-        ago by <%= comment.user.email %>
-      </div>
-      <hr>
+    <div class="comment-body">
+      <%= comment.body %>
+    </div>
+    <div class="comment-time">
+      <%= time_ago_in_words(comment.created_at) %>
+      ago by <%= comment.user.email %>
+    </div>
+    <hr>
     <% end %>
+  </div>
   <% else %>
     There is no comments to show.
   <% end %>
